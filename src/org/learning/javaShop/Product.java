@@ -9,6 +9,9 @@ public class Product {
     private String code;
     private final String name;
     private final String description;
+    private final BigDecimal price;
+    private final BigDecimal taxedPrice;
+    private final BigDecimal VAT;
     private final String formattedPrice;
     private final String formattedTaxedPrice;
 
@@ -17,8 +20,9 @@ public class Product {
         this.code = generateCode();
         this.name = name;
         this.description = description;
-        BigDecimal VAT = BigDecimal.valueOf(1.20);
-        BigDecimal taxedPrice = price.multiply(VAT);
+        this.price = price;
+        VAT = BigDecimal.valueOf(1.20);
+        this.taxedPrice = price.multiply(VAT);
         this.formattedPrice = NumberFormat.getCurrencyInstance().format(price);
         this.formattedTaxedPrice = NumberFormat.getCurrencyInstance().format(taxedPrice);
     }
@@ -64,6 +68,14 @@ public class Product {
         return description;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public BigDecimal getTaxedPrice() {
+        return taxedPrice;
+    }
+
     public String getFormattedPrice() {
         return formattedPrice;
     }
@@ -72,4 +84,7 @@ public class Product {
         return formattedTaxedPrice;
     }
 
+    public BigDecimal getVAT() {
+        return VAT;
+    }
 }
